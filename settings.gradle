@@ -1,0 +1,2 @@
+rootProject.name = "NewsBreeze"
+include ':app'
