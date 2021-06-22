@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/xParentLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="20dp">
+
+    <TextView
+        android:id="@+id/xSeparator"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/bg_separator" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/xImageCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/xSeparator"
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="12dp">
+
+        <ImageView
+            android:id="@+id/xPreviewImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:transitionName="@string/openArticleTransition"
+            android:scaleType="centerCrop" />
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/xBtnSave"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/xSeparator"
+        android:layout_margin="8dp"
+        android:background="@drawable/bg_grey_rounded"
+        android:padding="3dp"
+        android:src="@drawable/ic_saved"
+        android:translationZ="2dp" />
+
+    <TextView
+        android:id="@+id/xHeadline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/xImageCard"
+        android:layout_marginBottom="8dp"
+        android:text="Title"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/xDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/xHeadline"
+        android:layout_marginBottom="8dp"
+        android:text="description"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/xDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/xDescription"
+        android:text="date"
+        android:textSize="18sp"
+        android:textColor="@color/colorGrey" />
+
+</RelativeLayout>

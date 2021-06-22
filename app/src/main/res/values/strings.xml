@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">NewsBreeze</string>
+    <string name="api_key">796843c5286a4e3c9d5d564a454c5de4</string>
+    <string name="api_url"><![CDATA[https://newsapi.org/v2/top-headlines?country=in&apiKey=]]></string>
+    <string name="openArticleTransition">open_article_transition</string>
+    <string name="loading">Loading...</string>
 </resources>

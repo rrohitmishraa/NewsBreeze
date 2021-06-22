@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/xToolbar"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
+
+    <ImageView
+        android:id="@+id/xAppTitle"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="8dp"
+        android:padding="8dp"
+        android:src="@drawable/news_logo"
+        android:textSize="24sp" />
+
+    <ImageView
+        android:id="@+id/xBtnSaved"
+        android:layout_width="45dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_green_rounded"
+        android:padding="8dp"
+        android:src="@drawable/ic_saved" />
+
+</RelativeLayout>

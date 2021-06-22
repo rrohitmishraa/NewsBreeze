@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Activity.NewsDetailsActivity">
+
+    <ImageView
+        android:id="@+id/xDetailPreviewImage"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:foreground="#79000000"
+        android:scaleType="centerCrop"
+        android:src="@drawable/no_image"
+        android:transitionName="@string/openArticleTransition" />
+
+    <ImageView
+        android:id="@+id/xDetailBtnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_back" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/xDetailBtnSaveAnimation"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="10dp"
+        android:visibility="gone"
+        android:padding="5dp"
+        app:lottie_fileName="save_animation.json"/>
+
+    <TextView
+        android:id="@+id/xDetailDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/xDetailHeading"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/loading"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/xDetailHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/xScrollView"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="60dp"
+        android:text="@string/loading"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:id="@+id/xScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/xDetailPreviewImage"
+        android:layout_marginTop="-50dp"
+        android:background="@drawable/bg_white_rounded"
+        android:fillViewport="true"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp">
+
+            <ImageView
+                android:id="@+id/xAuthorPic"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="centerCrop"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/no_image"/>
+
+            <TextView
+                android:id="@+id/xDetailAuthorName"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_toRightOf="@+id/xAuthorPic"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/xDetailBtnSave"
+                android:gravity="center|left"
+                android:text="@string/loading"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/xDetailSource"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_toRightOf="@+id/xAuthorPic"
+                android:layout_below="@id/xDetailAuthorName"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/xDetailBtnSave"
+                android:gravity="center|left"
+                android:text="@string/loading"
+                android:textColor="@color/colorGrey"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/xDetailBtnSave"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
+                android:visibility="gone"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/xDetailContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/xDetailSource"
+                android:layout_marginTop="20dp"
+                android:text="@string/loading"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
