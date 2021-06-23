@@ -20,6 +20,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.rohit.newsbreeze.Helper.DBHelper;
 import com.rohit.newsbreeze.R;
+import com.rohit.newsbreeze.Util.SaveImage;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -63,7 +64,10 @@ public class NewsDetailsActivity extends AppCompatActivity {
                 mDetailBtnSave.setBackground(getResources().getDrawable(R.drawable.bg_grey_rounded));
                 mDetailBtnSave.setText("Saved");
 
-                addDataToDb(title, image_url, "", description, source, author, date, content);
+                SaveImage saveImage = new SaveImage();
+                String path = saveImage.save(NewsDetailsActivity.this, mPreviewImage);
+
+                addDataToDb(title, image_url, path, description, source, author, date, content);
             }
         }
     };

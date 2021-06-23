@@ -24,6 +24,7 @@ import com.rohit.newsbreeze.Activity.NewsDetailsActivity;
 import com.rohit.newsbreeze.Helper.DBHelper;
 import com.rohit.newsbreeze.Helper.NewsDataModel;
 import com.rohit.newsbreeze.R;
+import com.rohit.newsbreeze.Util.SaveImage;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -89,26 +90,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
                     holder.mBtnSave.setBackground(ctx.getDrawable(R.drawable.bg_grey_rounded));
                 } else {
-                    //Save Image
+                    SaveImage saveImage = new SaveImage();
+                    String path = saveImage.save(ctx, holder.mPreviewImage);
 
-                    ContextWrapper wrapper = new ContextWrapper(ctx);
-                    File file = wrapper.getDir("Images",MODE_PRIVATE);
-                    File path = new File(file, System.currentTimeMillis()+".jpg");
-
-                    Bitmap bmp = ((BitmapDrawable)holder.mPreviewImage.getDrawable()).getBitmap();
-                    
-                    try {
-                        FileOutputStream fos = new FileOutputStream(path);
-
-                        bmp.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-                    } catch (Exception e) {
-                        Toast.makeText(ctx, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-
-                    Toast.makeText(ctx, "" + path, Toast.LENGTH_SHORT).show();
-                    ///////////////////////////////
-
-                    boolean insertData = dbHelper.addData(data.get(position).getHeadLine(), data.get(position).getImage(), path + "", data.get(position).getDescription()
+                    boolean insertData = dbHelper.addData(data.get(position).getHeadLine(), data.get(position).getImage(), path, data.get(position).getDescription()
                             , data.get(position).getSource(), data.get(position).getAuthor(), data.get(position).getAuthor(), data.get(position).getContent());
 
                     if (insertData) Toast.makeText(ctx, "Saved", Toast.LENGTH_SHORT).show();
