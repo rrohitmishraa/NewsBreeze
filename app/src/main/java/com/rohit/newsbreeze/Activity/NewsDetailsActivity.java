@@ -1,6 +1,8 @@
 package com.rohit.newsbreeze.Activity;
 
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.transition.Fade;
@@ -24,6 +26,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,7 +63,7 @@ public class NewsDetailsActivity extends AppCompatActivity {
                 mDetailBtnSave.setBackground(getResources().getDrawable(R.drawable.bg_grey_rounded));
                 mDetailBtnSave.setText("Saved");
 
-                addDataToDb(title, image_url, description, source, author, date, content);
+                addDataToDb(title, image_url, "", description, source, author, date, content);
             }
         }
     };
@@ -179,15 +185,21 @@ public class NewsDetailsActivity extends AppCompatActivity {
 
         cursor.moveToFirst();
 
-        mDate.setText(cursor.getString(6));
+        mDate.setText(cursor.getString(7));
         mHeading.setText(cursor.getString(1));
-        mContent.setText(cursor.getString(7));
-        mAuthorName.setText(cursor.getString(5));
-        mSource.setText(cursor.getString(4));
+        mContent.setText(cursor.getString(8));
+        mAuthorName.setText(cursor.getString(6));
+        mSource.setText(cursor.getString(5));
+
+        File imgFile = new  File(cursor.getString(3));
+        if(imgFile.exists()){
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            mPreviewImage.setImageBitmap(myBitmap);
+        }
     }
 
-    public void addDataToDb(String title, String image_url, String description, String source, String author, String date, String content) {
-        boolean insertData = dbHelper.addData(title, image_url, description, source, author, date, content);
+    public void addDataToDb(String title, String image_url, String image, String description, String source, String author, String date, String content) {
+        boolean insertData = dbHelper.addData(title, image_url, image, description, source, author, date, content);
 
         if (insertData) Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
         else Toast.makeText(this, "There was some error.", Toast.LENGTH_SHORT).show();

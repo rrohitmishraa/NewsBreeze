@@ -23,6 +23,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "(id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "title TEXT," +
                 "image_url TEXT," +
+                "image BLOB," +
                 "description TEXT," +
                 "source TEXT," +
                 "author TEXT," +
@@ -39,12 +40,13 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addData(String title, String image_url, String description, String source, String author, String date, String content) {
+    public boolean addData(String title, String image_url, String image, String description, String source, String author, String date, String content) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
         contentValues.put("title", title);
         contentValues.put("image_url", image_url);
+        contentValues.put("image", image);
         contentValues.put("description", description);
         contentValues.put("source", source);
         contentValues.put("author", author);

@@ -2,7 +2,12 @@ package com.rohit.newsbreeze.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +26,14 @@ import com.rohit.newsbreeze.Helper.NewsDataModel;
 import com.rohit.newsbreeze.R;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URL;
 import java.util.ArrayList;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
@@ -77,11 +89,31 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
                     holder.mBtnSave.setBackground(ctx.getDrawable(R.drawable.bg_grey_rounded));
                 } else {
-                    boolean insertData = dbHelper.addData(data.get(position).getHeadLine(), data.get(position).getImage(), data.get(position).getDescription()
+                    //Save Image
+
+                    ContextWrapper wrapper = new ContextWrapper(ctx);
+                    File file = wrapper.getDir("Images",MODE_PRIVATE);
+                    File path = new File(file, System.currentTimeMillis()+".jpg");
+
+                    Bitmap bmp = ((BitmapDrawable)holder.mPreviewImage.getDrawable()).getBitmap();
+                    
+                    try {
+                        FileOutputStream fos = new FileOutputStream(path);
+
+                        bmp.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                    } catch (Exception e) {
+                        Toast.makeText(ctx, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    Toast.makeText(ctx, "" + path, Toast.LENGTH_SHORT).show();
+                    ///////////////////////////////
+
+                    boolean insertData = dbHelper.addData(data.get(position).getHeadLine(), data.get(position).getImage(), path + "", data.get(position).getDescription()
                             , data.get(position).getSource(), data.get(position).getAuthor(), data.get(position).getAuthor(), data.get(position).getContent());
 
                     if (insertData) Toast.makeText(ctx, "Saved", Toast.LENGTH_SHORT).show();
                     else Toast.makeText(ctx, "There was some error.", Toast.LENGTH_SHORT).show();
+
 
                     holder.mBtnSave.setBackground(ctx.getDrawable(R.drawable.bg_green_rounded));
                 }
